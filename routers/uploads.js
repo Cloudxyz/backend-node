@@ -12,6 +12,6 @@ router.use(fileUpload());
 
 //Routes
 router.put("/:type/:id", validateJWT, makeUpload);
-router.get("/:type/:file", validateJWT, getFile);
+router.get("/:type/:file", getFile);
 
 module.exports = router;

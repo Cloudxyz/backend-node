@@ -15,7 +15,7 @@ const assignImage = async (type, item, nameFile) => {
   }
   item.img = nameFile;
   await item.save();
-  return true;
+  return item.img;
 };
 
 const updateImage = async (type, id, nameFile) => {

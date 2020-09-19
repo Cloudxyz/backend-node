@@ -8,8 +8,6 @@ const verifyGoogleSignIn = async (token) => {
       audience: process.env.GOOGLE_ID,
     });
     const payload = ticket.getPayload();
-    console.log(payload);
-    const userid = payload["sub"];
     const { name, email, picture } = payload;
     return { name, email, picture };
   } catch (error) {

@@ -21,7 +21,6 @@ router.get("/", validateJWT, getUsers);
 router.post(
   "/create",
   [
-    validateJWT,
     check("name", "The name is mandatory").not().isEmpty(),
     check("password", "The password is mandatory").not().isEmpty(),
     check("email", "The email no have a valid format").isEmail(),

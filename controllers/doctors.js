@@ -47,12 +47,12 @@ const createDoctor = async (req, res = response) => {
 };
 
 const updateDoctor = async (req, res = response) => {
-  const uid = req.params.id;
+  const id = req.params.id;
+  const hid = req.params.hospital;
+  const uid = req.uid;
 
   try {
-    const doctorDB = await Doctor.findById(uid);
-
-    const { ...fields } = req.body;
+    const doctorDB = await Doctor.findById(id);
 
     if (!doctorDB) {
       return res.status(404).json({
@@ -61,7 +61,13 @@ const updateDoctor = async (req, res = response) => {
       });
     }
 
-    const doctorUpdated = await Doctor.findByIdAndUpdate(uid, fields, {
+    const changesDoctor = {
+      ...req.body,
+      user: uid,
+      hospital: hid,
+    };
+
+    const doctorUpdated = await Doctor.findByIdAndUpdate(id, changesDoctor, {
       new: true,
     });
 
@@ -79,9 +85,9 @@ const updateDoctor = async (req, res = response) => {
 };
 
 const deleteDoctor = async (req, res = response) => {
-  const uid = req.params.id;
+  const id = req.params.id;
   try {
-    const doctorDB = await Doctor.findById(uid);
+    const doctorDB = await Doctor.findById(id);
 
     if (!doctorDB) {
       return res.status(404).json({
@@ -94,7 +100,7 @@ const deleteDoctor = async (req, res = response) => {
 
     fields.active = false;
 
-    const doctorDelete = await Doctor.findByIdAndUpdate(uid, fields, {
+    const doctorDelete = await Doctor.findByIdAndUpdate(id, fields, {
       new: true,
     });
 

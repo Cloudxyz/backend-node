@@ -61,7 +61,7 @@ const makeUpload = async (req, res) => {
 
     res.json({
       ok: true,
-      item,
+      nameFile,
     });
   } catch (error) {
     console.log(error);
