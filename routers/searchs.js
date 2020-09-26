@@ -9,7 +9,7 @@ const { validateJWT } = require("../middlewares/validate-jwt");
 const router = Router();
 
 //Routes
-router.post("/:s", validateJWT, getResults);
-router.post("/:table/:s", validateJWT, getCollection);
+router.get("/:s", validateJWT, getResults);
+router.get("/:table/:s", validateJWT, getCollection);
 
 module.exports = router;

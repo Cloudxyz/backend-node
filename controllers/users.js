@@ -8,8 +8,8 @@ const user = require("../models/user");
 const getUsers = async (req, res) => {
   const queryFrom = Number(req.query.from) || 0;
   const [users, total] = await Promise.all([
-    // User.find({}).skip(queryFrom).limit(5),
-    User.find({}).skip(queryFrom),
+    User.find({}).skip(queryFrom).limit(5),
+    // User.find({}).skip(queryFrom),
     User.count(),
   ]);
   res.json({
